@@ -1,0 +1,31 @@
+---
+interface Props {
+  demoUrl?: string;
+}
+
+const { demoUrl } = Astro.props;
+---
+
+<section id="demo" class="scroll-mt-20">
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+    {
+      demoUrl ? (
+        <iframe src={demoUrl} title="WTF POS live demo" class="h-[70vh] min-h-96 w-full" loading="lazy"></iframe>
+      ) : (
+        <div class="flex min-h-80 flex-col items-center justify-center gap-4 p-8 text-center">
+          <div class="flex size-14 items-center justify-center rounded-full bg-indigo-100 text-2xl text-indigo-600" aria-hidden="true">▶</div>
+          <h3 class="text-xl font-semibold text-slate-900">Live demo coming soon</h3>
+          <p class="max-w-md text-slate-600">
+            You will get your own throwaway shop with sample products and orders. It resets after about two hours.
+          </p>
+          <a
+            href="/contact"
+            class="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-500"
+          >
+            Ask for early access
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

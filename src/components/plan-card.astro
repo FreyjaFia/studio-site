@@ -1,0 +1,41 @@
+---
+import type { Plan } from '@data/plans';
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex h-full flex-col rounded-2xl border p-6 sm:p-8',
+    plan.highlighted ? 'border-indigo-500 shadow-lg ring-1 ring-indigo-500' : 'border-slate-200',
+  ]}
+>
+  <h3 class="text-lg font-semibold text-slate-900">{plan.name}</h3>
+  <p class="mt-4 text-4xl font-bold tracking-tight text-slate-900">{plan.price}</p>
+  <p class="mt-1 text-sm text-slate-500">{plan.note}</p>
+  <ul class="mt-6 flex-1 space-y-3 text-slate-700">
+    {
+      plan.features.map((feature) => (
+        <li class="flex gap-2">
+          <span class="text-indigo-600" aria-hidden="true">✓</span>
+          <span>{feature}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <a
+    href={`/contact?plan=${plan.id}`}
+    class:list={[
+      'mt-8 rounded-lg px-4 py-3 text-center font-semibold',
+      plan.highlighted
+        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
+        : 'border border-slate-300 text-slate-800 hover:bg-slate-50',
+    ]}
+  >
+    Contact us
+  </a>
+</div>
