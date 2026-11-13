@@ -102,3 +102,9 @@ Commits made with Claude end with a `Co-Authored-By` line.
 Commits carry the person's own name and email as author, never a bot identity such as `Claude <noreply@anthropic.com>`.
 Check `git log --format='%an <%ae>'` before pushing. If the machine's git config is a bot identity, commit through a
 tool that authors as the signed-in GitHub user, or set the author explicitly with `git commit --author`.
+
+### Branches and history
+
+Never commit straight to `main`. Work on a plainly named feature branch and leave the merge to the person.
+
+`main` keeps one straight history line. Keep the branch rebased on `main`, and merge by fast-forward or rebase only, never with a merge commit.
