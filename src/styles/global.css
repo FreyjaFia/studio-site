@@ -63,6 +63,10 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --accent: var(--color-ember);
+}
+
 body {
   background-color: var(--color-cream);
   color: var(--color-espresso);

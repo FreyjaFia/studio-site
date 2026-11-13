@@ -20,7 +20,7 @@ const { plan, delay = 0 } = Astro.props;
 >
   {
     plan.highlighted && (
-      <span class="mb-4 w-fit rounded-full bg-ember px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
+      <span class="mb-4 w-fit rounded-full bg-(--accent) px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
         Most popular
       </span>
     )
@@ -32,7 +32,7 @@ const { plan, delay = 0 } = Astro.props;
     {
       plan.features.map((feature) => (
         <li class="flex gap-3">
-          <span class="text-ember" aria-hidden="true">✓</span>
+          <span class="text-(--accent)" aria-hidden="true">✓</span>
           <span>{feature}</span>
         </li>
       ))
@@ -42,7 +42,9 @@ const { plan, delay = 0 } = Astro.props;
     href={`/contact?plan=${plan.id}`}
     class:list={[
       'mt-8 rounded-full px-6 py-3.5 text-center font-semibold transition',
-      plan.highlighted ? 'bg-ember text-white hover:bg-white hover:text-espresso' : 'bg-espresso text-cream hover:bg-ember',
+      plan.highlighted
+        ? 'bg-(--accent) text-white hover:bg-white hover:text-espresso'
+        : 'bg-espresso text-cream hover:bg-(--accent)',
     ]}
   >
     Contact us

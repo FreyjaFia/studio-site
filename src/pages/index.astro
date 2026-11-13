@@ -1,12 +1,12 @@
 ---
 import AppCard from '@components/app-card.astro';
-import PosMock from '@components/pos-mock.astro';
+import AppStack from '@components/app-stack.astro';
 import { site } from '@config/site';
 import { apps } from '@data/apps';
 import BaseLayout from '@layouts/base-layout.astro';
 
-const rotatingWords: string[] = ['faster.', 'offline.', 'calmer.'];
-const marqueeItems: string[] = ['Fast orders', 'Works offline', 'Sales reports', 'Promotions', 'Many shops', 'Installable app'];
+const rotatingWords: string[] = ['shops', 'studios', 'teams'];
+const marqueeItems: string[] = ['Practical', 'Offline-ready', 'Made with real users', 'Simple to learn', 'Built to last'];
 const barHeights: number[] = [40, 65, 50, 85, 70, 100, 78];
 
 interface Step {
@@ -15,9 +15,9 @@ interface Step {
 }
 
 const steps: Step[] = [
-  { title: 'Try the demo', text: 'Open a throwaway shop with sample products and play with it. No signup.' },
-  { title: 'Tell us about your shop', text: 'Send a short message. We pick a plan together and answer your questions.' },
-  { title: 'Go live', text: 'We set up your shop and staff accounts so you can take your first order.' },
+  { title: 'Try the demo', text: 'Open a throwaway copy of an app with sample data and play with it. No signup.' },
+  { title: 'Tell us about your business', text: 'Send a short message. We pick a plan together and answer your questions.' },
+  { title: 'Go live', text: 'We set everything up so you can start using it the same week.' },
 ];
 ---
 
@@ -31,29 +31,30 @@ const steps: Step[] = [
       <div>
         <p class="rise inline-flex items-center gap-2 rounded-full border border-espresso/15 bg-white/60 px-4 py-1.5 text-sm font-medium">
           <span class="size-2 animate-pulse-dot rounded-full bg-sage"></span>
-          {site.name} · apps for small shops
+          {site.name} · {apps.length} {apps.length === 1 ? 'app' : 'apps'} and growing
         </p>
-        <h1 class="rise mt-6 font-serif text-5xl leading-[1.05] font-semibold tracking-tight sm:text-6xl lg:text-7xl" style="--d: 120ms">
-          Run the counter,
+        <h1 class="rise mt-6 font-serif text-5xl leading-[1.05] font-semibold tracking-tight sm:text-6xl" style="--d: 120ms">
+          We build apps that keep
           <span class="word-rotator text-ember italic">
             {rotatingWords.map((word, index) => <span style={`--i: ${index}`}>{word}</span>)}
           </span>
+          running.
         </h1>
         <p class="rise mt-6 max-w-lg text-lg text-latte sm:text-xl" style="--d: 240ms">
-          We build apps that carry a small business through the busy hours. Try the first one in your browser, no
+          Practical software for the people who run things day to day. Try any of our apps in your browser, no
           signup needed.
         </p>
         <div class="rise mt-10 flex flex-col gap-3 sm:flex-row" style="--d: 360ms">
-          <a href="/apps/wtf#demo" class="group rounded-full bg-espresso px-7 py-4 text-center font-semibold text-cream transition hover:bg-ember">
-            Try the live demo <span class="inline-block transition group-hover:translate-x-1" aria-hidden="true">→</span>
+          <a href="/apps" class="group rounded-full bg-espresso px-7 py-4 text-center font-semibold text-cream transition hover:bg-ember">
+            Explore our apps <span class="inline-block transition group-hover:translate-x-1" aria-hidden="true">→</span>
           </a>
-          <a href="/apps" class="rounded-full border border-espresso/25 px-7 py-4 text-center font-semibold transition hover:bg-white">
-            See our apps
+          <a href="/contact" class="rounded-full border border-espresso/25 px-7 py-4 text-center font-semibold transition hover:bg-white">
+            Get in touch
           </a>
         </div>
       </div>
 
-      <PosMock />
+      <AppStack />
     </div>
   </section>
 
@@ -70,84 +71,88 @@ const steps: Step[] = [
   </div>
 
   <section class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-    <h2 data-reveal class="max-w-2xl font-serif text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
-      Built for the way a counter <span class="text-ember italic">really</span> works.
-    </h2>
-
-    <div class="mt-12 grid gap-4 md:grid-cols-6">
-      <div data-reveal data-spot class="rounded-3xl bg-white p-8 md:col-span-4">
-        <p class="text-sm font-semibold tracking-wide text-ember uppercase">Offline first</p>
-        <h3 class="mt-3 font-serif text-3xl font-semibold">Internet down? Keep selling.</h3>
-        <p class="mt-3 max-w-md text-latte">Orders are kept on the device and sync the moment the connection returns.</p>
-        <div class="mt-8 h-2.5 overflow-hidden rounded-full bg-sand">
-          <div class="h-full w-2/3 animate-pulse rounded-full bg-sage"></div>
-        </div>
-        <p class="mt-2 text-xs text-latte">Syncing 3 orders…</p>
-      </div>
-
-      <div data-reveal data-spot style="--d: 100ms" class="rounded-3xl bg-espresso p-8 text-cream md:col-span-2">
-        <p class="text-sm font-semibold tracking-wide text-ember uppercase">Reports</p>
-        <h3 class="mt-3 font-serif text-2xl font-semibold">Know your best day.</h3>
-        <div class="mt-6 flex h-24 items-end gap-2">
-          {barHeights.map((height, index) => <div class="bar flex-1 rounded-t-md bg-ember" style={`--i: ${index}; height: ${height}%`}></div>)}
-        </div>
-      </div>
-
-      <div data-reveal data-spot style="--d: 0ms" class="rounded-3xl bg-sand p-8 md:col-span-2">
-        <p class="text-sm font-semibold tracking-wide text-ember uppercase">Promotions</p>
-        <h3 class="mt-3 font-serif text-2xl font-semibold">Deals that add up.</h3>
-        <p class="mt-5 flex items-baseline gap-3 font-serif">
-          <span class="text-xl text-latte line-through">₱320</span>
-          <span class="text-4xl font-semibold text-ember">₱280</span>
-        </p>
-      </div>
-
-      <div data-reveal data-spot style="--d: 100ms" class="rounded-3xl bg-white p-8 md:col-span-2">
-        <p class="text-sm font-semibold tracking-wide text-ember uppercase">Many shops</p>
-        <h3 class="mt-3 font-serif text-2xl font-semibold">One app, every branch.</h3>
-        <div class="mt-5 flex -space-x-3">
-          {['bg-ember', 'bg-sage', 'bg-espresso', 'bg-amber-400'].map((tone) => <span class={`size-11 rounded-full border-2 border-white ${tone}`}></span>)}
-        </div>
-      </div>
-
-      <div data-reveal data-spot style="--d: 200ms" class="rounded-3xl bg-sage p-8 text-white md:col-span-2">
-        <p class="text-sm font-semibold tracking-wide uppercase">Installable</p>
-        <h3 class="mt-3 font-serif text-2xl font-semibold">Add it to the home screen.</h3>
-        <p class="mt-3 text-white/80">Opens like an app on any phone, tablet or laptop.</p>
-      </div>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <h2 data-reveal class="font-serif text-4xl font-semibold tracking-tight sm:text-5xl">Featured apps</h2>
+      <a data-reveal href="/apps" class="font-semibold text-ember hover:underline">View all apps →</a>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {apps.slice(0, 6).map((app) => <AppCard app={app} />)}
     </div>
   </section>
 
   <section class="bg-sand">
     <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <h2 data-reveal class="font-serif text-4xl font-semibold tracking-tight sm:text-5xl">From curious to open in three steps.</h2>
-      <ol class="mt-14 grid gap-10 md:grid-cols-3">
-        {
-          steps.map((step, index) => (
-            <li data-reveal style={`--d: ${index * 120}ms`}>
-              <p class="font-serif text-7xl font-semibold text-ember/80">{index + 1}</p>
-              <div class="mt-3 h-px w-full bg-espresso/20"></div>
-              <h3 class="mt-4 font-serif text-2xl font-semibold">{step.title}</h3>
-              <p class="mt-2 text-latte">{step.text}</p>
-            </li>
-          ))
-        }
-      </ol>
+      <h2 data-reveal class="max-w-2xl font-serif text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
+        How we build, <span class="text-ember italic">every time.</span>
+      </h2>
+
+      <div class="mt-12 grid gap-4 md:grid-cols-6">
+        <div data-reveal data-spot class="rounded-3xl bg-white p-8 md:col-span-4">
+          <p class="text-sm font-semibold tracking-wide text-ember uppercase">Offline-ready</p>
+          <h3 class="mt-3 font-serif text-3xl font-semibold">Works when the internet doesn't.</h3>
+          <p class="mt-3 max-w-md text-latte">Our apps keep working on a bad connection and catch up when it returns.</p>
+          <div class="mt-8 h-2.5 overflow-hidden rounded-full bg-cream">
+            <div class="h-full w-2/3 animate-pulse rounded-full bg-sage"></div>
+          </div>
+        </div>
+
+        <div data-reveal data-spot style="--d: 100ms" class="rounded-3xl bg-espresso p-8 text-cream md:col-span-2">
+          <p class="text-sm font-semibold tracking-wide text-ember uppercase">Clear numbers</p>
+          <h3 class="mt-3 font-serif text-2xl font-semibold">See what is happening.</h3>
+          <div class="mt-6 flex h-24 items-end gap-2">
+            {barHeights.map((height, index) => <div class="bar flex-1 rounded-t-md bg-ember" style={`--i: ${index}; height: ${height}%`}></div>)}
+          </div>
+        </div>
+
+        <div data-reveal data-spot class="rounded-3xl bg-white p-8 md:col-span-2">
+          <p class="text-sm font-semibold tracking-wide text-ember uppercase">Real people</p>
+          <h3 class="mt-3 font-serif text-2xl font-semibold">Talk to the builder.</h3>
+          <div class="mt-5 flex w-fit items-center gap-1.5 rounded-full bg-sand px-4 py-3" aria-hidden="true">
+            <span class="size-2 animate-pulse rounded-full bg-latte"></span>
+            <span class="size-2 animate-pulse rounded-full bg-latte" style="animation-delay: 0.2s"></span>
+            <span class="size-2 animate-pulse rounded-full bg-latte" style="animation-delay: 0.4s"></span>
+          </div>
+        </div>
+
+        <div data-reveal data-spot style="--d: 100ms" class="rounded-3xl bg-white p-8 md:col-span-2">
+          <p class="text-sm font-semibold tracking-wide text-ember uppercase">One studio</p>
+          <h3 class="mt-3 font-serif text-2xl font-semibold">Many apps, one home.</h3>
+          <div class="mt-5 flex -space-x-3">
+            {apps.map((app) => <span class="size-11 rounded-full border-2 border-white" style={`background: ${app.accent}`}></span>)}
+            <span class="flex size-11 items-center justify-center rounded-full border-2 border-dashed border-espresso/30 bg-white text-latte">+</span>
+          </div>
+        </div>
+
+        <div data-reveal data-spot style="--d: 200ms" class="rounded-3xl bg-sage p-8 text-white md:col-span-2">
+          <p class="text-sm font-semibold tracking-wide uppercase">Installable</p>
+          <h3 class="mt-3 font-serif text-2xl font-semibold">Add it to the home screen.</h3>
+          <p class="mt-3 text-white/80">Opens like an app on any phone, tablet or laptop.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-    <h2 data-reveal class="font-serif text-4xl font-semibold tracking-tight sm:text-5xl">Our apps</h2>
-    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {apps.map((app) => <AppCard app={app} />)}
-    </div>
+    <h2 data-reveal class="font-serif text-4xl font-semibold tracking-tight sm:text-5xl">From curious to live in three steps.</h2>
+    <ol class="mt-14 grid gap-10 md:grid-cols-3">
+      {
+        steps.map((step, index) => (
+          <li data-reveal style={`--d: ${index * 120}ms`}>
+            <p class="font-serif text-7xl font-semibold text-ember/80">{index + 1}</p>
+            <div class="mt-3 h-px w-full bg-espresso/20"></div>
+            <h3 class="mt-4 font-serif text-2xl font-semibold">{step.title}</h3>
+            <p class="mt-2 text-latte">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 
   <section class="relative overflow-hidden bg-espresso text-cream">
     <div class="pointer-events-none absolute -right-20 -bottom-40 size-112 animate-blob rounded-full bg-ember/40 blur-3xl"></div>
     <div class="relative mx-auto flex max-w-6xl flex-col items-start gap-8 px-4 py-24 sm:px-6 md:flex-row md:items-center md:justify-between">
       <h2 data-reveal class="max-w-xl font-serif text-4xl leading-tight font-semibold sm:text-5xl">
-        Want it for <span class="text-ember italic">your</span> shop?
+        Have a business that needs a <span class="text-ember italic">better tool?</span>
       </h2>
       <a href="/contact" class="rounded-full bg-cream px-8 py-4 font-semibold text-espresso transition hover:bg-ember hover:text-white">
         Contact us

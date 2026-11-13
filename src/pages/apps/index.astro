@@ -2,6 +2,10 @@
 import AppCard from '@components/app-card.astro';
 import { apps } from '@data/apps';
 import BaseLayout from '@layouts/base-layout.astro';
+
+const categories: string[] = [...new Set(apps.map((app) => app.category))];
+const chipClass: string =
+  'rounded-full border border-espresso/20 px-4 py-2 text-sm font-semibold transition hover:bg-white aria-pressed:border-espresso aria-pressed:bg-espresso aria-pressed:text-cream';
 ---
 
 <BaseLayout title="Apps" description="The apps we build and sell.">
@@ -10,8 +14,45 @@ import BaseLayout from '@layouts/base-layout.astro';
     <p class="rise mt-5 max-w-2xl text-lg text-latte sm:text-xl" style="--d: 120ms">
       Each app has its own page, a live demo and plans.
     </p>
+
+    {
+      categories.length > 1 && (
+        <div class="rise mt-8 flex flex-wrap gap-2" style="--d: 200ms" role="group" aria-label="Filter by category">
+          <button type="button" data-filter="all" aria-pressed="true" class={chipClass}>All</button>
+          {categories.map((category) => (
+            <button type="button" data-filter={category} aria-pressed="false" class={chipClass}>
+              {category}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {apps.map((app) => <AppCard app={app} />)}
+      {
+        apps.map((app) => (
+          <div data-category={app.category}>
+            <AppCard app={app} />
+          </div>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+
+  chips.forEach((chip: HTMLButtonElement): void => {
+    chip.addEventListener('click', (): void => {
+      const selected: string = chip.dataset.filter ?? 'all';
+      chips.forEach((other: HTMLButtonElement): void => {
+        other.setAttribute('aria-pressed', String(other === chip));
+      });
+      cards.forEach((card: HTMLElement): void => {
+        card.hidden = selected !== 'all' && card.dataset.category !== selected;
+      });
+    });
+  });
+</script>

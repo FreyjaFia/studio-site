@@ -1,7 +1,7 @@
 export const site = {
   name: 'Studio Name',
-  tagline: 'Simple apps for small businesses.',
-  description: 'Apps built for small businesses, with a live demo you can try right now.',
+  tagline: 'Practical apps, built to last.',
+  description: 'We build practical apps for people who keep things running, with a live demo you can try.',
   url: 'https://example.com',
   contactEmail: 'hello@example.com',
 };
@@ -12,7 +12,6 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Apps', href: '/apps' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

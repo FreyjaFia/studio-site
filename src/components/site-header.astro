@@ -1,7 +1,9 @@
 ---
 import { navLinks, site } from '@config/site';
+import { apps } from '@data/apps';
 
 const currentPath: string = Astro.url.pathname;
+const linkBase: string = 'rounded-full px-4 py-2 text-sm font-medium transition hover:bg-espresso/5';
 ---
 
 <header class="sticky top-0 z-50 px-3 pt-3 sm:px-6">
@@ -14,24 +16,38 @@ const currentPath: string = Astro.url.pathname;
     </a>
 
     <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
+      <div class="group relative">
+        <a href="/apps" class:list={[linkBase, currentPath.startsWith('/apps') ? 'text-ember' : 'text-latte']}>
+          Apps <span aria-hidden="true" class="text-xs">▾</span>
+        </a>
+        <div
+          class="invisible absolute top-full left-0 w-72 translate-y-1 pt-3 opacity-0 transition group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+        >
+          <div class="max-h-96 overflow-auto rounded-2xl border border-espresso/10 bg-cream p-2 shadow-xl">
+            {
+              apps.map((app) => (
+                <a href={`/apps/${app.slug}`} class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-sand">
+                  <span class="size-3 shrink-0 rounded-full" style={`background: ${app.accent}`}></span>
+                  <span>
+                    <span class="block text-sm font-semibold">{app.name}</span>
+                    <span class="block text-xs text-latte">{app.category}</span>
+                  </span>
+                </a>
+              ))
+            }
+            <a href="/apps" class="mt-1 block rounded-xl px-3 py-2.5 text-sm font-semibold text-ember hover:bg-sand">All apps →</a>
+          </div>
+        </div>
+      </div>
       {
         navLinks.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              'rounded-full px-4 py-2 text-sm font-medium transition hover:bg-espresso/5',
-              currentPath.startsWith(link.href) ? 'text-ember' : 'text-latte',
-            ]}
-          >
+          <a href={link.href} class:list={[linkBase, currentPath.startsWith(link.href) ? 'text-ember' : 'text-latte']}>
             {link.label}
           </a>
         ))
       }
-      <a
-        href="/apps/wtf#demo"
-        class="ml-2 rounded-full bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-ember"
-      >
-        Try the demo
+      <a href="/contact" class="ml-2 rounded-full bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-ember">
+        Get in touch
       </a>
     </nav>
 
@@ -45,9 +61,18 @@ const currentPath: string = Astro.url.pathname;
         </svg>
       </summary>
       <nav
-        class="absolute right-0 mt-3 flex w-60 flex-col rounded-2xl border border-espresso/10 bg-cream p-2 shadow-xl"
+        class="absolute right-0 mt-3 flex max-h-[80vh] w-64 flex-col overflow-auto rounded-2xl border border-espresso/10 bg-cream p-2 shadow-xl"
         aria-label="Mobile"
       >
+        <a href="/apps" class="rounded-xl px-4 py-3 font-medium hover:bg-sand">All apps</a>
+        {
+          apps.map((app) => (
+            <a href={`/apps/${app.slug}`} class="flex items-center gap-3 rounded-xl py-2 pr-4 pl-8 text-sm text-latte hover:bg-sand">
+              <span class="size-2.5 rounded-full" style={`background: ${app.accent}`}></span>
+              {app.name}
+            </a>
+          ))
+        }
         {
           navLinks.map((link) => (
             <a href={link.href} class="rounded-xl px-4 py-3 font-medium hover:bg-sand">
@@ -55,9 +80,7 @@ const currentPath: string = Astro.url.pathname;
             </a>
           ))
         }
-        <a href="/apps/wtf#demo" class="mt-1 rounded-xl bg-ember px-4 py-3 text-center font-semibold text-white">
-          Try the demo
-        </a>
+        <a href="/contact" class="mt-1 rounded-xl bg-ember px-4 py-3 text-center font-semibold text-white">Get in touch</a>
       </nav>
     </details>
   </div>

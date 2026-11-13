@@ -1,5 +1,6 @@
 export interface Plan {
   id: string;
+  appSlug: string;
   name: string;
   price: string;
   note: string;
@@ -9,7 +10,8 @@ export interface Plan {
 
 export const plans: Plan[] = [
   {
-    id: 'starter',
+    id: 'wtf-starter',
+    appSlug: 'wtf',
     name: 'Starter',
     price: '₱0,000',
     note: 'per month, placeholder price',
@@ -17,7 +19,8 @@ export const plans: Plan[] = [
     highlighted: false,
   },
   {
-    id: 'shop',
+    id: 'wtf-shop',
+    appSlug: 'wtf',
     name: 'Shop',
     price: '₱0,000',
     note: 'per month, placeholder price',
@@ -25,7 +28,8 @@ export const plans: Plan[] = [
     highlighted: true,
   },
   {
-    id: 'multi',
+    id: 'wtf-multi',
+    appSlug: 'wtf',
     name: 'Multi-shop',
     price: 'Let’s talk',
     note: 'custom pricing',
