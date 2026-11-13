@@ -1,0 +1,18 @@
+---
+import PlanCard from '@components/plan-card.astro';
+import { plans } from '@data/plans';
+import BaseLayout from '@layouts/base-layout.astro';
+---
+
+<BaseLayout title="Pricing" description="Plans for WTF POS. Contact us to get started.">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Pricing</h1>
+    <p class="mt-4 max-w-2xl text-lg text-slate-600">
+      Plans for WTF POS. There is no online checkout yet: contact us and we will set you up.
+    </p>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {plans.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+    <p class="mt-8 text-sm text-slate-500">Prices shown are placeholders.</p>
+  </section>
+</BaseLayout>

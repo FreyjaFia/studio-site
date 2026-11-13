@@ -1,0 +1,56 @@
+---
+import AppCard from '@components/app-card.astro';
+import { site } from '@config/site';
+import { apps } from '@data/apps';
+import BaseLayout from '@layouts/base-layout.astro';
+---
+
+<BaseLayout>
+  <section class="bg-linear-to-b from-indigo-50 to-white">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-32">
+      <p class="text-sm font-semibold tracking-wide text-indigo-600 uppercase">{site.name}</p>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        {site.tagline}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
+        We build apps that run a small business day to day. Try the first one in your browser, no signup needed.
+      </p>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="/apps/wtf#demo"
+          class="rounded-lg bg-indigo-600 px-6 py-3 text-center font-semibold text-white hover:bg-indigo-500"
+        >
+          Try the live demo
+        </a>
+        <a
+          href="/apps"
+          class="rounded-lg border border-slate-300 px-6 py-3 text-center font-semibold text-slate-800 hover:bg-white"
+        >
+          See our apps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Our apps</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {apps.map((app) => <AppCard app={app} />)}
+    </div>
+  </section>
+
+  <section class="bg-slate-900">
+    <div class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-14 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-white sm:text-3xl">Want it for your shop?</h2>
+        <p class="mt-2 text-slate-300">Tell us about your business and we will set you up.</p>
+      </div>
+      <a
+        href="/contact"
+        class="rounded-lg bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-100"
+      >
+        Contact us
+      </a>
+    </div>
+  </section>
+</BaseLayout>

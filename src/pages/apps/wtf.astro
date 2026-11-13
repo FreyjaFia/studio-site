@@ -1,0 +1,58 @@
+---
+import DemoEmbed from '@components/demo-embed.astro';
+import { apps } from '@data/apps';
+import BaseLayout from '@layouts/base-layout.astro';
+
+const app = apps.find((candidate) => candidate.slug === 'wtf');
+if (!app) {
+  throw new Error('WTF app data is missing');
+}
+---
+
+<BaseLayout title={app.name} description={app.pitch}>
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <p class="text-sm font-semibold tracking-wide text-indigo-600 uppercase">App</p>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">{app.name}</h1>
+    <p class="mt-4 max-w-2xl text-lg text-slate-600 sm:text-xl">{app.pitch}</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href="#demo" class="rounded-lg bg-indigo-600 px-6 py-3 text-center font-semibold text-white hover:bg-indigo-500">
+        Try the demo
+      </a>
+      <a href="/pricing" class="rounded-lg border border-slate-300 px-6 py-3 text-center font-semibold text-slate-800 hover:bg-slate-50">
+        See pricing
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+    <h2 class="text-2xl font-bold text-slate-900">What you get</h2>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        app.features.map((feature) => (
+          <li class="flex gap-3 rounded-xl border border-slate-200 p-4">
+            <span class="text-indigo-600" aria-hidden="true">✓</span>
+            <span>{feature}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+    <h2 class="text-2xl font-bold text-slate-900">Screenshots</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ['Order screen', 'Sales report', 'Product list'].map((label) => (
+          <div class="flex aspect-video items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 text-sm text-slate-500">
+            {label}, screenshot coming
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+    <h2 class="mb-6 text-2xl font-bold text-slate-900">Live demo</h2>
+    <DemoEmbed />
+  </section>
+</BaseLayout>

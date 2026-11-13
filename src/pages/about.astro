@@ -1,0 +1,23 @@
+---
+import { site } from '@config/site';
+import BaseLayout from '@layouts/base-layout.astro';
+---
+
+<BaseLayout title="About" description={`About ${site.name}`}>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">About</h1>
+    <p class="mt-6 text-lg text-slate-700">
+      {site.name} builds practical apps for small businesses. Our first app, WTF POS, started in a real coffee shop
+      and is built around how a counter actually works: fast, simple and still usable when the internet is not.
+    </p>
+    <p class="mt-4 text-lg text-slate-700">
+      This page is a placeholder. The story, the people and the way we work will go here.
+    </p>
+    <a
+      href="/contact"
+      class="mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500"
+    >
+      Get in touch
+    </a>
+  </section>
+</BaseLayout>
