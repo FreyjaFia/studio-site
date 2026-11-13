@@ -20,3 +20,4 @@ Sell WTF POS (Wake. Taste. Focus) with screenshots, features and an embedded liv
 
 - Done: page at `/apps/wtf` with features, screenshot placeholders and a demo embed placeholder (`src/components/demo-embed.astro`)
 - Left: real screenshots, and pass the demo URL to `DemoEmbed` once the demo deployment exists
+- Now served by the generic `[slug].astro` page. The POS hero mock and feature bento live in `src/components/wtf/` and are registered by slug there.

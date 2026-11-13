@@ -15,3 +15,4 @@ Explain in one screen what the studio sells and send visitors to the Apps page o
 ## Progress
 
 - Done: hero, apps list and contact banner. Copy is placeholder text.
+- Reworked to be studio-level: neutral headline, featured apps from `src/data/apps.ts`, no app-specific copy. Adding an app needs no change here (see `docs/ADDING-AN-APP.md`).

@@ -5,6 +5,9 @@ Marketing site for the apps we sell. App #1 is WTF POS (Wake. Taste. Focus), sho
 The feature roadmap is an index: read `docs/ROADMAP.md`, then open only the feature file under `docs/roadmap/` you need.
 Update that feature file (and the status in `docs/ROADMAP.md`) when a feature's status or design changes.
 
+Adding an app: see `docs/ADDING-AN-APP.md`. The site is studio-level, so keep Home, nav and shared
+components free of app-specific copy. App-specific looks live in `src/components/<slug>/`.
+
 ## Commits
 
 Read `docs/COMMIT-GUIDELINES.md` before writing a message. In short: plain capitalized imperative subject of 50

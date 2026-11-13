@@ -19,3 +19,4 @@ Show the plans and let a visitor start a conversation.
 
 - Done: `/pricing` with three plan cards and Contact buttons (`/contact?plan=<id>`). Plans live in `src/data/plans.ts`.
 - Left: real plans and prices (current ones are placeholders)
+- Plans are per app (`appSlug` in `src/data/plans.ts`), shown in one section per app.
