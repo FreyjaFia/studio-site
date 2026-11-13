@@ -96,3 +96,9 @@ git commit -F /tmp/msg.txt
 ```
 
 Commits made with Claude end with a `Co-Authored-By` line.
+
+### Author
+
+Commits carry the person's own name and email as author, never a bot identity such as `Claude <noreply@anthropic.com>`.
+Check `git log --format='%an <%ae>'` before pushing. If the machine's git config is a bot identity, commit through a
+tool that authors as the signed-in GitHub user, or set the author explicitly with `git commit --author`.
