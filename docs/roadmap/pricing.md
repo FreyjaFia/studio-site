@@ -1,6 +1,6 @@
 # Pricing
 
-Status: planned
+Status: in progress
 
 ## Goal
 
@@ -14,3 +14,8 @@ Show the plans and let a visitor start a conversation.
 ## Out of scope
 
 - Online payment and billing. A sale starts with a message for now.
+
+## Progress
+
+- Done: `/pricing` with three plan cards and Contact buttons (`/contact?plan=<id>`). Plans live in `src/data/plans.ts`.
+- Left: real plans and prices (current ones are placeholders)
