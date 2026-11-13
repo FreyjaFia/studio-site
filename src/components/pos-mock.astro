@@ -1,0 +1,79 @@
+---
+interface Product {
+  name: string;
+  price: string;
+  tone: string;
+}
+
+interface OrderLine {
+  name: string;
+  price: string;
+}
+
+const products: Product[] = [
+  { name: 'Latte', price: '₱140', tone: 'bg-amber-100' },
+  { name: 'Cold brew', price: '₱160', tone: 'bg-orange-100' },
+  { name: 'Mocha', price: '₱165', tone: 'bg-stone-200' },
+  { name: 'Croissant', price: '₱120', tone: 'bg-yellow-100' },
+];
+
+const lines: OrderLine[] = [
+  { name: '2× Latte', price: '₱280' },
+  { name: '1× Croissant', price: '₱120' },
+  { name: '1× Cold brew', price: '₱160' },
+];
+---
+
+<div class="relative mx-auto w-full max-w-xl">
+  <div class="absolute -top-10 -left-2 z-10 animate-float rounded-2xl bg-white px-4 py-3 shadow-xl sm:-left-8">
+    <p class="flex items-center gap-2 text-sm font-semibold">
+      <span class="size-2.5 animate-pulse-dot rounded-full bg-sage"></span>
+      Works offline
+    </p>
+  </div>
+  <div class="absolute -right-2 -bottom-14 z-10 animate-float-slow rounded-2xl bg-espresso px-4 py-3 text-cream shadow-xl sm:-right-6">
+    <p class="text-xs text-cream/60">Today</p>
+    <p class="font-serif text-2xl font-semibold">₱12,480</p>
+  </div>
+
+  <div class="rise overflow-hidden rounded-3xl border border-espresso/10 bg-white shadow-2xl" style="--d: 300ms">
+    <div class="flex items-center gap-1.5 border-b border-espresso/10 bg-sand px-4 py-3">
+      <span class="size-2.5 rounded-full bg-ember"></span>
+      <span class="size-2.5 rounded-full bg-amber-400"></span>
+      <span class="size-2.5 rounded-full bg-sage"></span>
+      <span class="ml-3 text-xs font-medium text-latte">Counter · Order #128</span>
+    </div>
+    <div class="grid grid-cols-5">
+      <div class="col-span-3 grid grid-cols-2 gap-2.5 p-4">
+        {
+          products.map((product) => (
+            <div class={`rounded-xl p-3 ${product.tone}`}>
+              <div class="mb-3 size-8 rounded-full bg-white/70"></div>
+              <p class="text-sm font-semibold">{product.name}</p>
+              <p class="text-xs text-latte">{product.price}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="col-span-2 flex flex-col border-l border-espresso/10 bg-cream p-4">
+        <p class="text-xs font-semibold tracking-wide text-latte uppercase">Order</p>
+        <ul class="mt-3 flex-1 space-y-2 text-sm">
+          {
+            lines.map((line, index) => (
+              <li class="pop flex justify-between gap-2" style={`--d: ${900 + index * 600}ms`}>
+                <span>{line.name}</span>
+                <span class="font-medium">{line.price}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-4 border-t border-espresso/10 pt-3">
+          <p class="flex justify-between font-serif text-lg font-semibold"><span>Total</span><span>₱560</span></p>
+          <div class="pop mt-3 rounded-lg bg-ember py-2 text-center text-sm font-semibold text-white" style="--d: 2700ms">
+            Charge
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
