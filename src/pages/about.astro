@@ -4,18 +4,21 @@ import BaseLayout from '@layouts/base-layout.astro';
 ---
 
 <BaseLayout title="About" description={`About ${site.name}`}>
-  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">About</h1>
-    <p class="mt-6 text-lg text-slate-700">
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+    <h1 class="rise font-serif text-5xl font-semibold tracking-tight sm:text-6xl">
+      Made at the <span class="text-ember italic">counter.</span>
+    </h1>
+    <p class="rise mt-8 text-xl text-latte" style="--d: 120ms">
       {site.name} builds practical apps for small businesses. Our first app, WTF POS, started in a real coffee shop
       and is built around how a counter actually works: fast, simple and still usable when the internet is not.
     </p>
-    <p class="mt-4 text-lg text-slate-700">
+    <p data-reveal class="mt-6 text-xl text-latte">
       This page is a placeholder. The story, the people and the way we work will go here.
     </p>
     <a
+      data-reveal
       href="/contact"
-      class="mt-8 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500"
+      class="mt-10 inline-block rounded-full bg-espresso px-7 py-4 font-semibold text-cream transition hover:bg-ember"
     >
       Get in touch
     </a>

@@ -3,25 +3,36 @@ import type { Plan } from '@data/plans';
 
 interface Props {
   plan: Plan;
+  delay?: number;
 }
 
-const { plan } = Astro.props;
+const { plan, delay = 0 } = Astro.props;
 ---
 
 <div
+  data-reveal
+  data-spot
+  style={`--d: ${delay}ms`}
   class:list={[
-    'flex h-full flex-col rounded-2xl border p-6 sm:p-8',
-    plan.highlighted ? 'border-indigo-500 shadow-lg ring-1 ring-indigo-500' : 'border-slate-200',
+    'flex h-full flex-col rounded-3xl border p-7 transition hover:-translate-y-1 hover:shadow-xl sm:p-8',
+    plan.highlighted ? 'border-espresso bg-espresso text-cream' : 'border-espresso/10 bg-white',
   ]}
 >
-  <h3 class="text-lg font-semibold text-slate-900">{plan.name}</h3>
-  <p class="mt-4 text-4xl font-bold tracking-tight text-slate-900">{plan.price}</p>
-  <p class="mt-1 text-sm text-slate-500">{plan.note}</p>
-  <ul class="mt-6 flex-1 space-y-3 text-slate-700">
+  {
+    plan.highlighted && (
+      <span class="mb-4 w-fit rounded-full bg-ember px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
+        Most popular
+      </span>
+    )
+  }
+  <h3 class="font-serif text-2xl font-semibold">{plan.name}</h3>
+  <p class="mt-4 font-serif text-4xl font-semibold tracking-tight lg:text-5xl">{plan.price}</p>
+  <p class:list={['mt-1 text-sm', plan.highlighted ? 'text-cream/60' : 'text-latte']}>{plan.note}</p>
+  <ul class="mt-6 flex-1 space-y-3">
     {
       plan.features.map((feature) => (
-        <li class="flex gap-2">
-          <span class="text-indigo-600" aria-hidden="true">✓</span>
+        <li class="flex gap-3">
+          <span class="text-ember" aria-hidden="true">✓</span>
           <span>{feature}</span>
         </li>
       ))
@@ -30,10 +41,8 @@ const { plan } = Astro.props;
   <a
     href={`/contact?plan=${plan.id}`}
     class:list={[
-      'mt-8 rounded-lg px-4 py-3 text-center font-semibold',
-      plan.highlighted
-        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
-        : 'border border-slate-300 text-slate-800 hover:bg-slate-50',
+      'mt-8 rounded-full px-6 py-3.5 text-center font-semibold transition',
+      plan.highlighted ? 'bg-ember text-white hover:bg-white hover:text-espresso' : 'bg-espresso text-cream hover:bg-ember',
     ]}
   >
     Contact us

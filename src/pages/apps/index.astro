@@ -5,10 +5,12 @@ import BaseLayout from '@layouts/base-layout.astro';
 ---
 
 <BaseLayout title="Apps" description="The apps we build and sell.">
-  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Apps</h1>
-    <p class="mt-4 max-w-2xl text-lg text-slate-600">Each app has its own page, a live demo and plans.</p>
-    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+    <h1 class="rise font-serif text-5xl font-semibold tracking-tight sm:text-6xl">Apps</h1>
+    <p class="rise mt-5 max-w-2xl text-lg text-latte sm:text-xl" style="--d: 120ms">
+      Each app has its own page, a live demo and plans.
+    </p>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {apps.map((app) => <AppCard app={app} />)}
     </div>
   </section>
